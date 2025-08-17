@@ -3,12 +3,12 @@
   "version": "1.0.0",
   "main": "allow_one_function_call.js",
   "scripts": {
-    "dev": "nodemon add_two_promises.js"
+    "dev": "nodemon sleep.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Mehtab Ali",
   "license": "ISC",
-  "description": "",
+  "description": "all leetcode_30_days question solutions",
   "devDependencies": {
     "nodemon": "^3.1.10"
   }
