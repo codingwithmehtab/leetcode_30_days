@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "allow_one_function_call.js",
   "scripts": {
-    "dev": "nodemon memoize.js"
+    "dev": "nodemon add_two_promises.js"
   },
   "keywords": [],
   "author": "",
