@@ -65,5 +65,89 @@ actions[i] is one of "call" and "getCallCount"
 fnName is one of "sum", "factorial" and "fib"
 */
 
-let x  = toString([2,3])
-console.log(typeof x)
+function memoize(fn) {
+    let hash =  {}
+    return function(...args) {
+      let key  = JSON.stringify(args)
+      if(key in hash){
+        return hash[key]
+      }
+      hash[key] = fn(...args)
+      return hash[key]
+    }
+}
+
+const memoizedFn = memoize((a,b)=> a+b)
+ 
+ console.log(memoizedFn(2, 2)) // 5
+ console.log(memoizedFn(2, 2)) // 5
+ console.log(memoizedFn(1, 2)) // 3
+
+/** 
+ * let callCount = 0;
+ * const memoizedFn = memoize(function (a, b) {
+ *	 callCount += 1;
+ *   return a + b;
+ * })
+ memoizedFn(2, 3) // 5
+ memoizedFn(2, 3) // 5
+ * console.log(callCount) // 1 
+ */
+
+ /*
+ 
+ Input
+ fnName =
+"sum"
+actions =
+["call","call","getCallCount","call","getCallCount"]
+values =
+[[2,2],[2,2],[],[1,2],[]]
+Output
+[4,4,2,3,4]
+Expected
+[4,4,1,3,2]
+
+ */
+
+{
+
+    /**
+ * @param {Function} fn
+ * @return {Function}
+ */
+const memoizeGPT = function(fn) {
+    const cache = new Map();   // store args -> result
+
+    return function(...args) {
+        // create a unique key for arguments
+        let key = JSON.stringify(args);
+
+        if (cache.has(key)) {
+            return cache.get(key);
+        }
+
+        let result = fn(...args);
+        cache.set(key, result);
+        return result;
+    }
+};
+
+}
+
+
+{
+    const memoizefast = function (fn){
+        let resultMap = new Map()
+        return function (...args){
+            const key =  JSON.stringify(args)
+            if(!resultMap.has(key)){
+                const result = fn(...args)
+                resultMap.set(key, result)
+                return result
+            }
+            return resultMap.get(key)
+        }
+    }
+}
+
